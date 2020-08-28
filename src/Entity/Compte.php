@@ -9,9 +9,10 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use ApiPlatform\Core\Annotation\ApiFilter;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
+ * @ApiResource(normalizationContext={"groups"={"compte"}})
  * @ORM\Entity(repositoryClass=CompteRepository::class)
  *  @ApiFilter(SearchFilter::class, properties={"numcompte": "partial"})
  */
@@ -41,6 +42,7 @@ class Compte
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"compte"})
      */
     private $solde;
 
@@ -51,6 +53,7 @@ class Compte
 
     /**
      * @ORM\OneToMany(targetEntity=Operation::class, mappedBy="compte")
+     * @Groups({"compte"})
      */
     private $operations;
 

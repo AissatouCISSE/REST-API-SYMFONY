@@ -5,6 +5,7 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\OperationRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource()
@@ -21,11 +22,13 @@ class Operation
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"compte"})
      */
     private $montant;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"compte"})
      */
     private $date;
 
@@ -41,6 +44,7 @@ class Operation
 
     /**
      * @ORM\ManyToOne(targetEntity=Typeoperation::class, inversedBy="operations")
+     * @Groups({"compte"})
      */
     private $typeoperation;
 
